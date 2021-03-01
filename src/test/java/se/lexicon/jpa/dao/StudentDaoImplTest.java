@@ -25,13 +25,13 @@ public class StudentDaoImplTest {
         student1 = new Student("Mehrdad", "Javan", "mehrdad.javan@lxicon.se", LocalDate.parse("1989-01-01"), false, LocalDateTime.now());
     }
 
-    //@Test
+    @Test
     @DisplayName("Test 1: test save student")
     public void test_save_student() {
         testObject.create(student1);
     }
 
-    //@Test
+    @Test
     @DisplayName("Test 2: test find student by id")
     public void test_findById() {
         Student expected = testObject.create(student1);
@@ -39,7 +39,7 @@ public class StudentDaoImplTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    //@Test
+    @Test
     @DisplayName("Test 3: test save list of students")
     public void test_multiple_students(){
         List<Student> studentList= new ArrayList<>();
