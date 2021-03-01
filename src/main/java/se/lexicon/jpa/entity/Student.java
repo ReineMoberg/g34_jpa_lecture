@@ -3,6 +3,7 @@ package se.lexicon.jpa.entity;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 //@Table(name = "TBL_STUDENT")
@@ -23,7 +24,25 @@ public class Student {
     private LocalDateTime registerDate;
 
     public Student() {
-        registerDate = LocalDateTime.now();
+    }
+
+    public Student(int studentId, String firstName, String lastName, String email, LocalDate birthDate, boolean status, LocalDateTime registerDate) {
+        this.studentId = studentId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.birthDate = birthDate;
+        this.status = status;
+        this.registerDate = registerDate;
+    }
+
+    public Student(String firstName, String lastName, String email, LocalDate birthDate, boolean status, LocalDateTime registerDate) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.birthDate = birthDate;
+        this.status = status;
+        this.registerDate = registerDate;
     }
 
     public int getStudentId() {
@@ -80,5 +99,18 @@ public class Student {
 
     public void setRegisterDate(LocalDateTime registerDate) {
         this.registerDate = registerDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return studentId == student.studentId && status == student.status && Objects.equals(firstName, student.firstName) && Objects.equals(lastName, student.lastName) && Objects.equals(email, student.email) && Objects.equals(birthDate, student.birthDate) && Objects.equals(registerDate, student.registerDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(studentId, firstName, lastName, email, birthDate, status, registerDate);
     }
 }
